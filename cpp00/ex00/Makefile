@@ -6,3 +6,7 @@ SRCS = megaphone.cpp
 all: $(NAME)
 $(NAME): $(SRCS)
 	c++ $(FLAGS) $(SRCS) -o $(NAME)
+
+clean:
+	rm -f $(NAME)
+fclean: clean
