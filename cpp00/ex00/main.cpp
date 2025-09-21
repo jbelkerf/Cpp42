@@ -16,18 +16,15 @@ int main(int argc, char **argv)
 {
     if (argc < 2)
     {
-        std::cout<< "* LOUD AND UNBEARABLE FEEDBACK NOISE *"<<std::endl;
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
         return (0);
     }
-    for (int i = 1; i < argc; i++)
-    {
-        std::string argument(argv[i]);
-        for (unsigned long j = 0; j < argument.length(); j++)
-        {
-            char c = std::toupper(argument[j]);
-            std::cout<<c;
-        }
-    }
-    std::cout<<std::endl;
+    std::string sentence;
+    sentence = argv[1];
+    for (int i = 2; i < argc; i++)
+        sentence += argv[i];
+    for (int i = 0; i < sentence.length(); i++)
+        sentence[i] = std::toupper(sentence[i]);
+    std::cout << sentence <<std::endl;
     return (0);
 }
