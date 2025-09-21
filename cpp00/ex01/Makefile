@@ -1,11 +1,51 @@
-NAME = PhoneBook
+# Color Definitions
+RED     := \033[0;31m
+GREEN   := \033[0;32m
+YELLOW  := \033[0;33m
+RESET   := \033[0m
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+CXX := c++
+
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98
+
+RM := rm -rf
+
+NAME := Phonebook
+
+VAL := valgrind --leak-check=full --track-origins=yes
+
+SRC := main.cpp PhoneBook.cpp Contact.cpp
+
+INC := Contact.hpp PhoneBook.hpp
+
+OBJ := $(SRC:.cpp=.o)
 
 all: $(NAME)
-	c++ $(FLAGS) PhoneBook.hpp Contact.hpp   Contact.cpp PhoneBook.cpp  main.cpp -o $(NAME)
+
+$(NAME): $(OBJ)
+	@printf "$(GREEN)  Linking $(NAME)...$(RESET)\n"
+	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+	@printf "$(GREEN)  Successfully built $(NAME)$(RESET)\n"
+
+%.o: %.cpp $(INC)
+	@printf "$(YELLOW)  Compiling $<...$(RESET)\n"
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+
+valgrind: $(NAME)
+	@printf "$(GREEN)  Execute with VALGRIND$(RESET)\n"
+	@$(VAL) ./$(NAME)
 
 clean:
-	rm -f $(NAME)
+	@printf "$(RED)  Cleaning object files...$(RESET)\n"
+	@$(RM) $(OBJ)
+	@printf "$(GREEN)  Object files removed$(RESET)\n"
 
 fclean: clean
+	@printf "$(RED)  Removing executable...$(RESET)\n"
+	@$(RM) $(NAME)
+	@printf "$(GREEN)  Executable file removed$(RESET)\n"
+
+re: fclean all
+	@printf "$(YELLOW)  Rebuilding project...$(RESET)\n"
+
+.PHONY: all clean fclean re

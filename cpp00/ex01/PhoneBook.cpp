@@ -54,7 +54,7 @@ void PhoneBook::search(void)
 {
     for (int i = 0; i < 8; i++)
     {
-        std::cout <<"    " << i << "     "<< resize(contacts[index].getfname()) << "|" << resize(contacts[index].getlname())<< "|" << resize(contacts[index].getnname())<< std::endl;
+        std::cout << "|" <<"    " << i << "     " << "|" << resize(contacts[index].getfname()) << "|" << resize(contacts[index].getlname())<< "|" << resize(contacts[index].getnname())<< "|" << std::endl;
     }
 }
 
