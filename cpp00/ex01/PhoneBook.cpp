@@ -1,5 +1,5 @@
 #include "PhoneBook.hpp"
-
+#include <iomanip>
 void    PhoneBook::add(void)
 {
     std::string tmp;
@@ -7,6 +7,7 @@ void    PhoneBook::add(void)
     std::cout << "enter your first name " << std::endl;
     std::cin >> tmp;
     contacts[index].setfname(tmp);
+
     std::cout << "enter your last name " << std::endl;
     std::cin >> tmp;
     contacts[index].setlname(tmp);
@@ -21,24 +22,24 @@ void    PhoneBook::add(void)
     contacts[index].setdsecret(tmp);
     index = (index + 1) % 8;
 }
-
-std::string resize(std::string str)
-{
-    std::string tmp;
-    int         reminder;
-    if (str.length() == 0)
-        return ("  empty   ");
-    if (str.length() > 10)
-    {
-        tmp = str.substr(0, 9);
-        tmp = tmp.append(".");
-        return (tmp);
-    }
-    reminder = 10 - str.length();
-    for (int i = 0; i < reminder; i++)
-        str += " ";
-    return (str);
-}
+//! to be removed
+// std::string std::string str)
+// {
+//     std::string tmp;
+//     int         reminder;
+//     if (str.length() == 0)
+//         return ("  empty   ");
+//     if (str.length() > 10)
+//     {
+//         tmp = str.substr(0, 9);
+//         tmp = tmp.append(".");
+//         return (tmp);
+//     }
+//     reminder = 10 - str.length();
+//     for (int i = 0; i < reminder; i++)
+//         str += " ";
+//     return (str);
+// }
 
 void    PhoneBook::setindex(int n)
 {
@@ -50,11 +51,20 @@ int    PhoneBook::getindex(void)
     return (index);
 }
 
+using std::setw; //! to be removed
 void PhoneBook::search(void)
 {
+    std::string fname, lname, nname;
+    std::cout << " -------------------------------------------" << std::endl;
+    std::cout << "|" <<"  index   " << "|" << "first_name" << "|" << "last_name "<< "|" << " nickname " << "|" << std::endl;
+    std::cout << "|-------------------------------------------|" << std::endl;
     for (int i = 0; i < 8; i++)
     {
-        std::cout << "|" <<"    " << i << "     " << "|" << resize(contacts[index].getfname()) << "|" << resize(contacts[index].getlname())<< "|" << resize(contacts[index].getnname())<< "|" << std::endl;
+        fname = fname;
+        lname = contacts[i].getlname();
+        nname = contacts[i].getnname();
+        std::cout << "|" <<"    " << i << "     " << "|" << fname.width(9) << "|" << contacts[i].getlname()<< "|" << contacts[i].getnname()<< "|" << std::endl;
     }
+    std::cout << "-------------------------------------------" << std::endl;
 }
 

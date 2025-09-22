@@ -10,10 +10,11 @@ class PhoneBook
 
     public:
         void    add(void);
-        void search(void);
+        void    search(void);
         
-        void setindex(int n);
-        int getindex(void);
+        void    setindex(int n);
+        int     getindex(void);
+        Contact getcontact(void);
 };
 
 # endif
