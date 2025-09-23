@@ -6,34 +6,11 @@
 /*   By: jbelkerf <jbelkerf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 10:45:03 by jbelkerf          #+#    #+#             */
-/*   Updated: 2025/09/23 12:24:27 by jbelkerf         ###   ########.fr       */
+/*   Updated: 2025/09/23 12:28:06 by jbelkerf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-
-// void    PhoneBook::add(void)
-// {
-//     std::string tmp;
-
-//     std::cout << "enter your first name " << std::endl;
-//     std::cin >> tmp;
-//     contacts[index].setfname(tmp);
-
-//     std::cout << "enter your last name " << std::endl;
-//     std::cin >> tmp;
-//     contacts[index].setlname(tmp);
-//     std::cout << "enter your nickname " << std::endl;
-//     std::cin >> tmp;
-//     contacts[index].setnname(tmp);
-//     std::cout << "enter your phone number " << std::endl;
-//     std::cin >> tmp;
-//     contacts[index].setpnumber(tmp);
-//     std::cout << "enter your darkest secret " << std::endl;
-//     std::cin >> tmp;
-//     contacts[index].setdsecret(tmp);
-//     index = (index + 1) % 8;
-// }
 
 std::string replace_unwanted(std::string str)
 {
