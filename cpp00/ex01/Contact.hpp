@@ -6,7 +6,7 @@
 /*   By: jbelkerf <jbelkerf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 10:45:25 by jbelkerf          #+#    #+#             */
-/*   Updated: 2025/09/23 10:45:26 by jbelkerf         ###   ########.fr       */
+/*   Updated: 2025/09/23 12:04:31 by jbelkerf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ class Contact
         std::string getfname(void);
         std::string getlname(void);
         std::string getnname(void);
+        std::string getpnumber(void);
+        std::string getdsecret(void);
 };
 
 # endif

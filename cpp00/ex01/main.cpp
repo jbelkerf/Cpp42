@@ -6,7 +6,7 @@
 /*   By: jbelkerf <jbelkerf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 10:45:09 by jbelkerf          #+#    #+#             */
-/*   Updated: 2025/09/23 10:45:10 by jbelkerf         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:40:53 by jbelkerf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main()
     {
         std::cout << "enter your command: ADD, SEARCH, EXIT"<<std::endl;
         std::cin >> command;
+        std::cin.ignore();
         if (!command.compare("EXIT"))
             return  (0);
         if (!command.compare("ADD"))
