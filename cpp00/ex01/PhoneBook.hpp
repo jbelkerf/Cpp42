@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbelkerf <jbelkerf@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/23 10:45:05 by jbelkerf          #+#    #+#             */
+/*   Updated: 2025/09/23 10:45:06 by jbelkerf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 #include <iostream>
+#include <iomanip>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -14,7 +27,6 @@ class PhoneBook
         
         void    setindex(int n);
         int     getindex(void);
-        Contact getcontact(void);
 };
 
 # endif
