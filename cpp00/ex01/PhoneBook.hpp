@@ -6,7 +6,7 @@
 /*   By: jbelkerf <jbelkerf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 10:45:05 by jbelkerf          #+#    #+#             */
-/*   Updated: 2025/09/23 10:45:06 by jbelkerf         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:29:02 by jbelkerf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <iostream>
 #include <iomanip>
 #include "Contact.hpp"
+
+std::string gnl(std::string output);
 
 class PhoneBook
 {

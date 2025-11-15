@@ -12,7 +12,6 @@ RM := rm -rf
 
 NAME := Phonebook
 
-VAL := valgrind --leak-check=full --track-origins=yes
 
 SRC := main.cpp PhoneBook.cpp Contact.cpp
 
@@ -31,9 +30,6 @@ $(NAME): $(OBJ)
 	@printf "$(YELLOW)  Compiling $<...$(RESET)\n"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-valgrind: $(NAME)
-	@printf "$(GREEN)  Execute with VALGRIND$(RESET)\n"
-	@$(VAL) ./$(NAME)
 
 clean:
 	@printf "$(RED)  Cleaning object files...$(RESET)\n"
