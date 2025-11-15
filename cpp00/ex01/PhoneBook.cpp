@@ -6,7 +6,7 @@
 /*   By: jbelkerf <jbelkerf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 10:45:03 by jbelkerf          #+#    #+#             */
-/*   Updated: 2025/09/23 12:28:06 by jbelkerf         ###   ########.fr       */
+/*   Updated: 2025/11/15 10:29:32 by jbelkerf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int    PhoneBook::getindex(void)
     return (index);
 }
 
-using std::setw; //! to be removed
 void PhoneBook::search(void)
 {
     int index;

@@ -6,22 +6,46 @@
 /*   By: jbelkerf <jbelkerf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 10:44:55 by jbelkerf          #+#    #+#             */
-/*   Updated: 2025/09/23 10:44:56 by jbelkerf         ###   ########.fr       */
+/*   Updated: 2025/11/15 11:12:23 by jbelkerf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Account.hpp"
 
-// Define static variables (allocate storage)
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-// Define the static function
-void Account::_displayTimestamp() {
-    // for example:
-    std::cout << "[19920104_091532] ";
+void Account::_displayTimestamp()
+{
+    std::time_t now = std::time(NULL);
+    std::tm *t = std::localtime(&now);
+
+    std::string s;
+
+    s = "[";
+    s += std::string(8, '0');
+    int year = t->tm_year + 1900;
+    s[1] = '0' + (year / 1000) % 10;
+    s[2] = '0' + (year / 100) % 10;
+    s[3] = '0' + (year / 10) % 10;
+    s[4] = '0' + (year % 10);
+
+    s[5] = '0' + (t->tm_mon + 1) / 10;
+    s[6] = '0' + (t->tm_mon + 1) % 10;
+    s[7] = '0' + t->tm_mday / 10;
+    s[8] = '0' + t->tm_mday % 10;
+    s += "_";
+    s += std::string(6, '0');
+    s[10] = '0' + t->tm_hour / 10;
+    s[11] = '0' + t->tm_hour % 10;
+    s[12] = '0' + t->tm_min / 10;
+    s[13] = '0' + t->tm_min % 10;
+    s[14] = '0' + t->tm_sec / 10;
+    s[15] = '0' + t->tm_sec % 10;
+    s += "] ";
+    std::cout << s;
 }
 
 int	Account::getNbAccounts( void ){
