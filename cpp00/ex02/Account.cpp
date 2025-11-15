@@ -19,8 +19,8 @@ int Account::_totalNbWithdrawals = 0;
 
 void Account::_displayTimestamp()
 {
-    std::time_t now = std::time(NULL);
-    std::tm *t = std::localtime(&now);
+    time_t now = time(NULL);
+    tm *t = localtime(&now);
 
     std::string s;
 
