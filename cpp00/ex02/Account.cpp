@@ -6,7 +6,7 @@
 /*   By: jbelkerf <jbelkerf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 10:44:55 by jbelkerf          #+#    #+#             */
-/*   Updated: 2025/11/15 11:12:23 by jbelkerf         ###   ########.fr       */
+/*   Updated: 2025/11/15 15:03:32 by jbelkerf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ Account::Account(int initial_deposit)
     Account::_nbAccounts += 1;
     _amount = initial_deposit;
     Account::_totalAmount += initial_deposit;
+    Account::_nbDeposits = 0;
+    Account::_nbWithdrawals = 0;
     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created" << std::endl;
 }
