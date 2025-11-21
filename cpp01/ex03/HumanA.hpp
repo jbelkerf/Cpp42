@@ -3,10 +3,9 @@
 
 class HumanA
 {
-    private:
-        std::string name;
+private:
+    std::string name;
 
-    public:
-        
+public:
 };
 #endif
