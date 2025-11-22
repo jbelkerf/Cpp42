@@ -1,5 +1,9 @@
 #include "Weapon.hpp"
 
+Weapon::Weapon(std::string name){
+    setType(name);
+}
+
 std::string& Weapon::getType(void)
 {
     std::string &ref = this->type;
