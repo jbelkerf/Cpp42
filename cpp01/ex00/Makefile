@@ -1,16 +1,48 @@
 NAME = ZOMBIE
 
-FLAGS = -Wall -Wextra -Werror #-std=c++98
-C = c++
 
-SRCS = Zombie.cpp     main.cpp        newZombie.cpp   randomChump.cpp
+RED     := \033[0;31m
+GREEN   := \033[0;32m
+YELLOW  := \033[0;33m
+RESET   := \033[0m
 
-HEADER =  Zombie.hpp  
+CXX := c++
+
+CXXFLAGS := -Wall -Wextra -Werror #-std=c++98
+
+RM := rm -rf
+
+SRC = Zombie.cpp  main.cpp newZombie.cpp   randomChump.cpp
+
+
+
+INC := Zombie.hpp
+
+OBJ := $(SRC:.cpp=.o)
 
 all: $(NAME)
-$(NAME): $(SRCS)
-	c++ $(FLAGS) $(SRCS) -o $(NAME)
+
+$(NAME): $(OBJ)
+	@printf "$(GREEN)  Linking $(NAME)...$(RESET)\n"
+	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+	@printf "$(GREEN)  Successfully built $(NAME)$(RESET)\n"
+
+%.o: %.cpp $(INC)
+	@printf "$(YELLOW)  Compiling $<...$(RESET)\n"
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+
 
 clean:
-	rm -f $(NAME)
+	@printf "$(RED)  Cleaning object files...$(RESET)\n"
+	@$(RM) $(OBJ)
+	@printf "$(GREEN)  Object files removed$(RESET)\n"
+
 fclean: clean
+	@printf "$(RED)  Removing executable...$(RESET)\n"
+	@$(RM) $(NAME)
+	@printf "$(GREEN)  Executable file removed$(RESET)\n"
+
+re: fclean all
+	@printf "$(YELLOW)  Rebuilding project...$(RESET)\n"
+
+.PHONY: all clean fclean re

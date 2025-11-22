@@ -1,4 +1,4 @@
-NAME = BRAINZ
+NAME = harlFilter
 
 RED     := \033[0;31m
 GREEN   := \033[0;32m
@@ -11,9 +11,9 @@ CXXFLAGS := -Wall -Wextra -Werror #-std=c++98
 
 RM := rm -rf
 
-SRC = Zombie.cpp     main.cpp     zombieHorde.cpp
+SRC = main.cpp Harl.cpp
 
-INC := Zombie.hpp
+INC := Harl.hpp
 
 OBJ := $(SRC:.cpp=.o)
 
