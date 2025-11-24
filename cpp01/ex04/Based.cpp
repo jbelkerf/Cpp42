@@ -2,14 +2,14 @@
 
 Based::Based(std::string in, std::string out, std::string s1, std::string s2){
     err = 0;
-    infile = new std::ifstream(in);
+    infile = new std::ifstream(in.c_str());
     if (!infile->is_open())
     {
         std::cout << "unable to open FILENAME" << std::endl;
         err += 1;
     }
     if (err == 0)
-        outfile = new std::ofstream(out);
+        outfile = new std::ofstream(out.c_str());
     if (!err && !outfile->is_open())
     {
         std::cout << "unable to open OUTFILE" << std::endl;
@@ -34,22 +34,23 @@ void Based::execute(void)
         return ;
     std::string tmp;
     std::string line;
+    std::string search_line;
     while (std::getline(*infile, line))
     {
-        std::cout << "line : " << line << std::endl;
-        std::cout << "s1 : " << s1 << std::endl;
-        std::cout << "s2 : " << s2 << std::endl;
+        search_line = line;
+        line = "";
         while (true)
         {
-            // break;
-            int start = line.find(s1);
-            std::cout << "here is start " << start << std::endl;
+            int start = search_line.find(s1);
             if (start == -1)
+            {
+                if (search_line.empty())
+                    line += search_line;
                 break;
-            tmp = line.substr(0, start);
-            tmp += s2;
-            tmp += line.substr(start + s1.length(), line.length());
-            line = tmp;
+            }
+            line = line.substr(0, start);
+            line += s2;
+            search_line = search_line.substr(start + s1.length(), search_line.length() - start);
         }
         *outfile << line << std::endl;
     }
