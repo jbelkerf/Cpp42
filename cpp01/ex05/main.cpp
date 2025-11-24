@@ -5,6 +5,7 @@ int main()
 {
     Harl h;
 
-    h.complain("debug");
-    h.complain("error");
+    h.complain("DEBUG");
+    h.complain("ERROR");
+    h.complain("ddd");
 }
