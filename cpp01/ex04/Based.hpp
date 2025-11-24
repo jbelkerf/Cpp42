@@ -6,14 +6,14 @@
 class Based
 {
     private:
-        std::ifstream *infile;
-        std::ofstream *outfile;
+        std::ifstream infile;
+        std::ofstream outfile;
         std::string s1;
         std::string s2;
         int err;
 
     public:
-        Based(std::string in, std::string out, std::string s1, std::string s2);
+        Based(std::string in, std::string out, std::string _s1, std::string _s2);
         ~Based();
         void execute(void);
 };
