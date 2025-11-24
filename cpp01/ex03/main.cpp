@@ -2,8 +2,6 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-//!
-//FIXME: handle null inn weopon
 
 int main()
 {

@@ -4,7 +4,7 @@ Weapon::Weapon(std::string name){
     setType(name);
 }
 
-std::string& Weapon::getType(void)
+const std::string& Weapon::getType(void)
 {
     std::string &ref = this->type;
     return ref;

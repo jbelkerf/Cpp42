@@ -5,5 +5,5 @@ int main(){
     for (int i = 0; i< 4;i++){
         a[i].announce();
     }
-    delete []a;//! to be searched
+    delete[] a;//! to be searched
 }

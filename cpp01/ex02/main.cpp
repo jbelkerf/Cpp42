@@ -14,6 +14,6 @@ int main()
     
     std::cout << "     ----VALUE----" << std::endl << std::endl;
     std::cout << "stringVAL = " << str << std::endl;
-    std::cout << "stringPTR = " << stringPTR << std::endl;
+    std::cout << "stringPTR = " << *stringPTR << std::endl;
     std::cout << "stringREF = " << stringREF << std::endl<< std::endl;
 }

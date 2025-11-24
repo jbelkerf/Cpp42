@@ -10,7 +10,7 @@ private:
     Weapon & weapon;
 
 public:
-    HumanA(std::string name, Weapon& Weap):name(name), weapon(Weap){}
+    HumanA(std::string name, Weapon& Weap);
     void attack();
 };
 #endif
