@@ -14,6 +14,7 @@
 # define PHONEBOOK_HPP
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 #include "Contact.hpp"
 
 std::string gnl(std::string output);
