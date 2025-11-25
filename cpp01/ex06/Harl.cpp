@@ -15,10 +15,6 @@ void Harl::error(void){
 }
 
 Harl::Harl(){
-    this->func[0] = &Harl::debug;
-    this->func[1] = &Harl::info;
-    this->func[2] = &Harl::warning;
-    this->func[3] = &Harl::error;
     this->s[0] = "DEBUG";
     this->s[1] = "INFO";
     this->s[2] = "WARNING";
@@ -36,10 +32,13 @@ void Harl::complain(std::string level){
     {
     case 0:
         this->debug();
+        // intentional fallthrough
     case 1:
         this->info();
+        // intentional fallthrough
     case 2:
         this->warning();
+        // intentional fallthrough
     case 3:
         this->error();
         break;

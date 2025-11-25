@@ -5,7 +5,6 @@
 class Harl
 {
     private:
-        void (Harl::*func[4])(void);
         std::string s[4];
         void debug(void);
         void info(void);
