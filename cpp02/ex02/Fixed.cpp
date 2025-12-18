@@ -36,7 +36,6 @@ Fixed::Fixed(int _n)
 
 int Fixed::getRawBits( void ) const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return this->_fixed_point;
 };
 
@@ -89,6 +88,11 @@ bool Fixed::operator>=( const Fixed &second) const
     return (this->getRawBits() >= second.getRawBits());
 };
 
+bool Fixed::operator==( const Fixed &second) const
+{
+    return (this->getRawBits() == second.getRawBits());
+};
+
 bool Fixed::operator<=( const Fixed &second) const
 {
     return (this->getRawBits() <= second.getRawBits());
@@ -138,6 +142,19 @@ Fixed Fixed::operator++(int)
 {
     Fixed temp = *this;
     this->_fixed_point++;
+    return temp;
+};
+
+Fixed &Fixed::operator--()
+{
+    this->_fixed_point--;
+    return *this;
+};
+
+Fixed Fixed::operator--(int)
+{
+    Fixed temp = *this;
+    this->_fixed_point--;
     return temp;
 };
 

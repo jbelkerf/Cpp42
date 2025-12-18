@@ -16,9 +16,11 @@ class Fixed
         ~Fixed();
 
         Fixed &operator=(const Fixed &to_copy);
+        
         bool operator>(const Fixed &second) const;
         bool operator<(const Fixed &second) const;
         bool operator<=(const Fixed &second) const;
+        bool operator==(const Fixed &second) const;
         bool operator>=(const Fixed &second) const;
         bool operator!=(const Fixed &second) const;
 
@@ -29,6 +31,8 @@ class Fixed
 
         Fixed &operator++(); 
         Fixed operator++(int);  
+        Fixed &operator--(); 
+        Fixed operator--(int);  
 
         static Fixed &min(Fixed &a, Fixed &b);
         static const Fixed &min(const Fixed &a, const Fixed &b);

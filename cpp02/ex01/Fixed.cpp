@@ -13,6 +13,19 @@ Fixed::Fixed( const Fixed &to_copy)
     *this = to_copy;
 }
 
+Fixed::Fixed(int _n)
+{
+    std::cout << "Int constructor called" << std::endl;
+    _n = _n << this->_fractional;
+    this->_fixed_point = _n;
+
+};
+
+Fixed::Fixed(float _f){
+    std::cout << "Float constructor called" << std::endl;
+    this->_fixed_point = std::roundf(_f * (1 << this->_fractional));
+};
+
 Fixed &Fixed::operator=(const Fixed &to_copy)
 {
     std::cout << "Copy assignment operator called" << std::endl;
@@ -34,7 +47,6 @@ Fixed::~Fixed()
 }
 int Fixed::getRawBits( void ) const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return this->_fixed_point;
 };
 
@@ -48,16 +60,5 @@ float Fixed::toFloat( void ) const{
 };
 
 int Fixed::toInt( void ) const{
-    return this->_fixed_point >> 8;
-};
-
-Fixed::Fixed(int _n)
-{
-    _n = _n << this->_fractional;
-    this->_fixed_point = _n;
-
-};
-
-Fixed::Fixed(float _f){
-    this->_fixed_point = std::roundf(_f * (1 << this->_fractional));
+    return this->_fixed_point >> this->_fractional;
 };
