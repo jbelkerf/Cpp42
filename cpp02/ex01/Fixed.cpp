@@ -23,7 +23,7 @@ Fixed::Fixed(int _n)
 
 Fixed::Fixed(float _f){
     std::cout << "Float constructor called" << std::endl;
-    this->_fixed_point = std::roundf(_f * (1 << this->_fractional));
+    this->_fixed_point = roundf(_f * (1 << this->_fractional));
 };
 
 Fixed &Fixed::operator=(const Fixed &to_copy)

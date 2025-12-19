@@ -14,7 +14,7 @@ Fixed::Fixed( const Fixed &to_copy)
 }
 
 Fixed::Fixed(float _f){
-    this->_fixed_point = std::roundf(_f * (1 << this->_fractional));
+    this->_fixed_point = roundf(_f * (1 << this->_fractional));
 };
 
 Fixed::~Fixed()
