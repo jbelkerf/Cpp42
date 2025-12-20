@@ -2,7 +2,7 @@
 #ifndef CLAPTRAP_HPP   
 #define CLAPTRAP_HPP
 class ClapTrap {
-    private:
+    protected:
         std::string _name;
         unsigned int hitPoints;
         unsigned int energyPoints;
@@ -11,7 +11,7 @@ class ClapTrap {
         ClapTrap();
         ClapTrap(std::string name);
         ClapTrap(ClapTrap &copy);
-        ClapTrap& operator=(const ClapTrap &other);
+        ClapTrap &operator=(const ClapTrap &other);
         ~ClapTrap();
 
 

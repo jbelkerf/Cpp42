@@ -10,6 +10,7 @@ ClapTrap::ClapTrap(): _name(*(new std::string("Default"))), hitPoints(10), energ
 ClapTrap::ClapTrap(ClapTrap &copy): _name(copy._name), hitPoints(copy.hitPoints), energyPoints(copy.energyPoints), attackDamage(copy.attackDamage) {
     std::cout << "ClapTrap " << _name << " copy constructed." << std::endl;
 }
+
 ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
     if (this != &other) {
         _name = other._name;
