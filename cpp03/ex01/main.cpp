@@ -1,18 +1,25 @@
-
 #include "ScavTrap.hpp"
 
 int main(void)
 {
-    ScavTrap scav("SC4V-TP");
+    std::cout << "\n\033[34m--- TEST 1: Construction Chaining ---\033[0m" << std::endl;
+    {
+        ScavTrap guard("Guardian");
+        
+        std::cout << "\n\033[34m--- TEST 2: The Special 'guardGate' Ability ---\033[0m" << std::endl;
+        
+        guard.guardGate();
 
-    scav.attack("Target Dummy");
-    scav.guardGate();
-    scav.takeDamage(30);
+        std::cout << "\n\033[34m--- TEST 3: Overridden Attack (Damage 20) ---\033[0m" << std::endl;
+        
+        guard.attack("Intruder");
 
-    ScavTrap scav2(scav);
+        std::cout << "\n\033[34m--- TEST 4: Tankiness (HP 100) ---\033[0m" << std::endl;
+        guard.takeDamage(50); 
+        guard.beRepaired(10); 
+        
+        std::cout << "\n\033[34m--- TEST 5: Destruction Chaining ---\033[0m" << std::endl;
+    }
 
-    ScavTrap ss("dd") ;
-
-    ss = scav2;
-    
+    return 0;
 }
