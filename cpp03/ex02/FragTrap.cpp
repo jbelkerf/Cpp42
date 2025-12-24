@@ -9,14 +9,14 @@ FragTrap::FragTrap(): ClapTrap() {
 }
 
 FragTrap::FragTrap(const std::string &name) : ClapTrap(name) {
-    std::cout << "FragTrap Parameterized constructor called for " << this->getName() << std::endl;
     this->_name = name;
+    std::cout << "FragTrap Parameterized constructor called for " << this->getName() << std::endl;
     this->hitPoints = 100;
     this->energyPoints = 100;
     this->attackDamage = 30;
 }
 
-FragTrap::FragTrap(const FragTrap &other): ClapTrap(other) {
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other) {
     std::cout << "FragTrap Copy constructor called for " << other.getName() << std::endl;
     *this = other;
 }
