@@ -88,7 +88,6 @@ void Character::unequip(int idx)
     if (inventory[idx])
     {
         std::cout << "Unequipped " << inventory[idx]->getType() << " from slot " << idx << "." << std::endl;
-        delete inventory[idx];
         inventory[idx] = NULL;
     }
     else
@@ -96,6 +95,7 @@ void Character::unequip(int idx)
         std::cout << "No materia to unequip in slot " << idx << "." << std::endl;
     }
 }
+
 void Character::use(int idx, ICharacter& target)
 {
     if (idx < 0 || idx >= 4)

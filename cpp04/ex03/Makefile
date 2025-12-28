@@ -6,7 +6,7 @@ RESET   := \033[0m
 
 CXX := c++
 
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 RM := rm -rf
 

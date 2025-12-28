@@ -27,7 +27,6 @@ int main()
     me->equip(src->createMateria("cure"));
     me->equip(src->createMateria("ice"));
 
-    me->unequip(2);
 
     ICharacter* bob = new Character("bob");
 
@@ -40,7 +39,6 @@ int main()
     delete me;
     delete src;
 
-    while (1);
     
     
     return 0;
