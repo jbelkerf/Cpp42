@@ -12,18 +12,18 @@ int main()
             animals[i] = new Cat();
         }
     }
+    std::cout << "\n\n--- ANIMAL SOUNDS ---" << std::endl;
     for (int i = 0; i < 4; ++i) {
         animals[i]->makeSound();
     }
     for (int i = 0; i < 4; ++i) {
         delete animals[i];
     }
-    std::cout << "--- DEEP COPY TEST ---" << std::endl;
+    std::cout << "\n\n--- DEEP COPY TEST ---" << std::endl;
     Dog basic;
     {
-        Dog tmp = basic; // Copy constructor
-    } // tmp is destroyed here. If shallow, basic's brain is deleted!
-    std::cout << "--- END OF SCOPE ---" << std::endl;
-    // basic is destroyed here. If shallow, double-free error occurs.
+        Dog tmp = basic;
+    } 
+    std::cout << "\n\n--- END OF SCOPE ---" << std::endl;
     return 0;
 }

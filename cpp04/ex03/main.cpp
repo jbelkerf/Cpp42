@@ -4,10 +4,16 @@
 #include "Character.hpp"
 int main()
 {
+    std::cout << "-------creating source and learning materias-------" << std::endl;
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
+    src->learnMateria(new Cure());
+    src->learnMateria(new Cure());
+    src->learnMateria(new Cure());
+    src->learnMateria(new Ice());
 
+    std::cout << "\n\n-------creating character and equipping materias-------" << std::endl;
     ICharacter* me = new Character("me");
 
     AMateria* tmp;
@@ -16,14 +22,26 @@ int main()
     tmp = src->createMateria("cure");
     me->equip(tmp);
 
+    me->equip(src->createMateria("cure"));
+    me->equip(src->createMateria("ice"));
+    me->equip(src->createMateria("cure"));
+    me->equip(src->createMateria("ice"));
+
+    me->unequip(2);
+
     ICharacter* bob = new Character("bob");
 
     me->use(0, *bob);
     me->use(1, *bob);
 
+
+    std::cout << "\n\n---------deleting everything-------" << std::endl;
     delete bob;
     delete me;
     delete src;
 
+    while (1);
+    
+    
     return 0;
 }

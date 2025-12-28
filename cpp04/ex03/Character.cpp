@@ -48,6 +48,7 @@ Character & Character::operator=(const Character &other)
 
 Character::~Character()
 {
+    std::cout << "Character destructor called." << std::endl;
     for (int i = 0; i < 4; i++)
     {
         if (inventory[i])
@@ -56,7 +57,6 @@ Character::~Character()
             inventory[i] = NULL;
         }
     }
-    std::cout << "Character destructor called." << std::endl;
 }
 std::string const & Character::getName() const
 {
@@ -75,6 +75,7 @@ void Character::equip(AMateria* m)
         }
     }
     std::cout << "Inventory full, cannot equip " << m->getType() << "." << std::endl;
+    delete m;
 }
 
 void Character::unequip(int idx)
@@ -87,6 +88,7 @@ void Character::unequip(int idx)
     if (inventory[idx])
     {
         std::cout << "Unequipped " << inventory[idx]->getType() << " from slot " << idx << "." << std::endl;
+        delete inventory[idx];
         inventory[idx] = NULL;
     }
     else

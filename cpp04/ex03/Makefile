@@ -10,9 +10,9 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-SRC = AMateria.cpp     Character.cpp      Cure.cpp ICharacter.cpp IMateriaSource.cpp  Ice.cpp MateriaSource.cpp   main.cpp
+SRC = AMateria.cpp Character.cpp Cure.cpp ICharacter.cpp IMateriaSource.cpp Ice.cpp MateriaSource.cpp main.cpp 
 
-INC := AMateria.hpp   Character.hpp  Cure.hpp   ICharacter.hpp    IMateriaSource.hpp Ice.hpp     MateriaSource.hpp
+INC := AMateria.hpp Character.hpp Cure.hpp ICharacter.hpp IMateriaSource.hpp Ice.hpp MateriaSource.hpp
 
 OBJ := $(SRC:.cpp=.o)
 

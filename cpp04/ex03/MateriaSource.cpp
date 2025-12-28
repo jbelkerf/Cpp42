@@ -7,7 +7,7 @@ MateriaSource::MateriaSource() : IMateriaSource()
     std::cout << "MateriaSource default constructor called." << std::endl;
 }
 
-MateriaSource::MateriaSource(const MateriaSource &other) : IMateriaSource()
+MateriaSource::MateriaSource(const MateriaSource &other) : IMateriaSource(other)
 {
     for (int i = 0; i < 4; i++)
     {
@@ -40,6 +40,7 @@ MateriaSource & MateriaSource::operator=(const MateriaSource &other)
 
 MateriaSource::~MateriaSource()
 {
+    std::cout << "MateriaSource destructor called." << std::endl;
     for (int i = 0; i < 4; i++)
     {
         if (sources[i])
@@ -48,7 +49,6 @@ MateriaSource::~MateriaSource()
             sources[i] = NULL;
         }
     }
-    std::cout << "MateriaSource destructor called." << std::endl;
 }
 
 void MateriaSource::learnMateria(AMateria* m)
@@ -63,6 +63,7 @@ void MateriaSource::learnMateria(AMateria* m)
         }
     }
     std::cout << "MateriaSource cannot learn more materia, inventory full." << std::endl;
+    delete m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)

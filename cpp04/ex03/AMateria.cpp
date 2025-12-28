@@ -1,5 +1,10 @@
 #include "AMateria.hpp"
 
+AMateria::AMateria() : type("default")
+{
+    std::cout << "Default AMateria created." << std::endl;
+}
+
 AMateria::AMateria(std::string const & type) : type(type)
 {
     std::cout << "AMateria of type " << type << " created." << std::endl;
@@ -9,6 +14,7 @@ AMateria::AMateria(const AMateria& other) : type(other.type)
 {
     std::cout << "AMateria copy constructor called for type " << type << "." << std::endl;
 }
+
 AMateria& AMateria::operator=(const AMateria& other)
 {
     if (this != &other)
