@@ -33,6 +33,9 @@ int main()
     me->use(0, *bob);
     me->use(1, *bob);
 
+    me->unequip(1);
+    free(tmp);
+
 
     std::cout << "\n\n---------deleting everything-------" << std::endl;
     delete bob;
@@ -40,6 +43,6 @@ int main()
     delete src;
 
     
-    
+    while (1);
     return 0;
 }
