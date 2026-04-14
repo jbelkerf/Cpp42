@@ -3,17 +3,29 @@
 class Bureaucrat
 {
     protected:
-        class bureauException: public std::exception {
+        const std::string tname;
+        int tgrade;
+        Bureaucrat();
+
+    public:
+        class GradeTooLowException: public std::exception {
             public:
                 virtual const char * what() const throw() {
-                    return "error";
+                    return "error too low";
                 }
         };
 
-        const std::string tname;
-        int tgrade;
+        class GradeTooHighException: public std::exception {
+            public:
+                virtual const char * what() const throw() {
+                    return "error to hight";
+                }
+        };
 
-    public:
-        Bureaucrat();
+        const std::string getName();
+        int getGrade();
         Bureaucrat(std::string name, int grade);
+        Bureaucrat &operator=(const Bureaucrat &other);
+        Bureaucrat(const Bureaucrat &other);
+        ~Bureaucrat();
 };

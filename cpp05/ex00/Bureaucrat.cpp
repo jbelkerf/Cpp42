@@ -2,10 +2,33 @@
 
 Bureaucrat::Bureaucrat(std::string name, int grade): tname(name)
 {
-    if (grade >= 1 && grade <= 150)
-    {
-        throw bureauException();
-    }
+    std::cout << "creating bureaucrat" << std::endl;
+    if (grade < 1)
+        throw GradeTooHighException();
+    else if (grade > 150)
+        throw GradeTooLowException();
     else
         tgrade = grade;
+}
+
+Bureaucrat::~Bureaucrat(){
+    std::cout << "deleting the bereaucrat" << std::endl;
+}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other){
+    std::cout << "coping bureaucrat" << std::endl;
+    tgrade = other.tgrade;
+    return *this;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &other){
+    *this = other;
+}
+
+const std::string Bureaucrat::getName(){
+    return this->tname;
+}
+
+int Bureaucrat::getGrade(){
+    return this->tgrade;
 }
