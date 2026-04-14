@@ -21,14 +21,14 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other){
     return *this;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other){
+Bureaucrat::Bureaucrat(const Bureaucrat &other): tname(other.tname){
     *this = other;
 }
 
-const std::string Bureaucrat::getName(){
+const std::string Bureaucrat::getName() const{
     return this->tname;
 }
 
-int Bureaucrat::getGrade(){
+int Bureaucrat::getGrade() const{
     return this->tgrade;
 }
