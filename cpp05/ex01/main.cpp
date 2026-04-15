@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 
 int main() {
@@ -36,6 +37,29 @@ int main() {
         boss.incrementGrade(); // This should throw GradeTooHighException (1 -> 0)
     }
     catch (std::exception &e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
+    }
+    try
+    {
+        Bureaucrat boss("Hermes", 1);
+        Bureaucrat intern("Fry", 150);
+
+        // Create a form that requires grade 50 to sign and 20 to execute
+        Form taxForm("Tax Form", 50, 20);
+
+        std::cout << taxForm << std::endl; // Test Form's << operator
+
+        // Intern tries to sign (Should fail)
+        intern.signForm(taxForm);
+
+        // Boss tries to sign (Should succeed)
+        boss.signForm(taxForm);
+
+        // Boss tries to sign AGAIN (Already signed)
+        boss.signForm(taxForm);
+    }
+    catch (std::exception &e)
+    {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 

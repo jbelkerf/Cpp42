@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include <ostream>
+class Form;
 
 class Bureaucrat
 {
-    protected:
+    private:
         const std::string tname;
         int tgrade;
         Bureaucrat();
@@ -22,7 +23,7 @@ class Bureaucrat
         class GradeTooHighException: public std::exception {
             public:
                 virtual const char * what() const throw() {
-                    return "error to hight";
+                    return "error to high";
                 }
         };
 
@@ -35,7 +36,9 @@ class Bureaucrat
         Bureaucrat &operator=(const Bureaucrat &other);
         Bureaucrat(const Bureaucrat &other);
         ~Bureaucrat();
-    };
+
+        void signForm(Form &form);
+};
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 

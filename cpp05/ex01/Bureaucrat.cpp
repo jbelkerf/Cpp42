@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(std::string name, int grade): tname(name)
 {
@@ -54,4 +55,18 @@ const std::string Bureaucrat::getName() const{
 
 int Bureaucrat::getGrade() const{
     return this->tgrade;
+}
+
+
+void Bureaucrat::signForm(Form &form){
+    try
+    {
+        form.beSigned(*this);
+        std::cout << this->getName() << " signed " << form.getFormName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << this->getName() << " couldn't sign " << form.getFormName() << "  " << e.what() << std::endl;
+    }
+    
 }

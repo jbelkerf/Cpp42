@@ -10,9 +10,9 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-SRC = Bureaucrat.cpp  main.cpp
+SRC = Bureaucrat.cpp  main.cpp Form.cpp
 
-INC := Bureaucrat.hpp
+INC := Bureaucrat.hpp Form.hpp
 
 OBJ := $(SRC:.cpp=.o)
 
