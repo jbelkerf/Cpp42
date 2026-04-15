@@ -28,6 +28,24 @@ class AForm{
                 }
         };
 
+        class NotPermited : public std::exception
+        {
+            public:
+                virtual const char *what() const throw()
+                {
+                    return "error Not permited";
+                }
+        };
+
+        class NotSigned : public std::exception
+        {
+            public:
+                virtual const char *what() const throw()
+                {
+                    return "error Not signed";
+                }
+        };
+
         AForm();
         AForm(std::string name, int signGrade, int excuteGrade);
         AForm(const AForm &other);
@@ -42,6 +60,8 @@ class AForm{
         void beSigned(const Bureaucrat &bureaucrat);
 
         virtual void execute(Bureaucrat const &executor) const = 0;
+
+        bool isReadyForExecute(const Bureaucrat &executor) const;
 };
 
 std::ostream &operator<<(std::ostream &os, const AForm &form);
