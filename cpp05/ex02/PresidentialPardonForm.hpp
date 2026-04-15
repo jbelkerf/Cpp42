@@ -2,7 +2,7 @@
 #define PRESIDENTIALPARDONFORM_HPP
 #include "AForm.hpp"
 
-class PresidentialPardonFrom : AForm{
+class PresidentialPardonFrom : public AForm{
     private:
         std::string _target;
     
