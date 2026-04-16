@@ -7,9 +7,9 @@
 
 class Intern{
     private:
-        AForm *makePardon(const std::string &formName, const std::string &target);
-        AForm *makeburry(const std::string &formName, const std::string &target);
-        AForm *makerobot(const std::string &formName, const std::string &target);
+        AForm *makePardon(const std::string &target);
+        AForm *makeburry(const std::string &target);
+        AForm *makerobot(const std::string &target);
 
     public:
         Intern();

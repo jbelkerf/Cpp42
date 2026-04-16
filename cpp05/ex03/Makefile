@@ -10,9 +10,9 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-SRC = AForm.cpp  Bureaucrat.cpp  main.cpp  PresidentialPardonForm.cpp  RobotomyRequestForm.cpp  ShrubberyCreationForm.cpp
+SRC = AForm.cpp  Bureaucrat.cpp  main.cpp  PresidentialPardonForm.cpp Intern.cpp RobotomyRequestForm.cpp  ShrubberyCreationForm.cpp
 
-INC := AForm.hpp  Bureaucrat.hpp  PresidentialPardonForm.hpp  RobotomyRequestForm.hpp  ShrubberyCreationForm.hpp
+INC := AForm.hpp  Bureaucrat.hpp  PresidentialPardonForm.hpp  RobotomyRequestForm.hpp  ShrubberyCreationForm.hpp Intern.hpp
 
 OBJ := $(SRC:.cpp=.o)
 
@@ -35,7 +35,7 @@ clean:
 
 fclean: clean
 	@printf "$(RED)  Removing executable...$(RESET)\n"
-	rm *_shrubbery
+	@rm -f *_shrubbery
 	@$(RM) $(NAME)
 	@printf "$(GREEN)  Executable file removed$(RESET)\n"
 
