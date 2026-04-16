@@ -50,7 +50,7 @@ class AForm{
         AForm(std::string name, int signGrade, int excuteGrade);
         AForm(const AForm &other);
         AForm &operator=(const AForm &other);
-        ~AForm();
+        virtual ~AForm();
 
         std::string getFormName() const;
         int getFormSignGrade() const;
