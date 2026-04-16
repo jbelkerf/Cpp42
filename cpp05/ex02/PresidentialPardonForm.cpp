@@ -1,27 +1,27 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonFrom::PresidentialPardonFrom(std::string target) : AForm("PresidentialPardonFrom", 25,5)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25,5)
 {
-    std::cout << "PresidentialPardonFrom created " << std::endl;
-    target = target;
+    std::cout << "PresidentialPardonForm created " << std::endl;
+    _target = target;
 }
 
-PresidentialPardonFrom::PresidentialPardonFrom(PresidentialPardonFrom const &other) : AForm("PresidentialPardonFrom", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &other) : AForm("PresidentialPardonForm", 25, 5)
 {
-    std::cout << "PresidentialPardonFrom coppied" << std::endl;
+    std::cout << "PresidentialPardonForm coppied" << std::endl;
     *this = other;
 }
 
-PresidentialPardonFrom &PresidentialPardonFrom::operator=(PresidentialPardonFrom const &other){
+PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &other){
     _target = other._target;
     return *this;
 }
 
-void PresidentialPardonFrom::execute(Bureaucrat const & executor) const {
-
-    std::cout << _target << " has benn pardoned by "<< executor.getName() << std::endl;
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
+    this->isReadyForExecute(executor);
+    std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
 
-PresidentialPardonFrom::~PresidentialPardonFrom(){
-    std::cout << "the PresidentialPardonFrom has been eliminated";
+PresidentialPardonForm::~PresidentialPardonForm(){
+    std::cout << "the PresidentialPardonForm has been eliminated";
 }

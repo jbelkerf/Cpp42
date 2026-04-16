@@ -22,6 +22,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const{
     std::ofstream outfile;
 
+    this->isReadyForExecute(executor);
     std::string out = _target + "_shrubbery";
     outfile.open(out.c_str());
     if (!outfile.is_open())

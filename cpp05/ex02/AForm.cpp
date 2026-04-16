@@ -65,8 +65,9 @@ bool AForm::isReadyForExecute(const Bureaucrat &executor) const{
 
     if (!this->getSignStatus())
         throw NotSigned();
-    if (this->getFormExcuteGrade() > executor.getGrade())
+    if (this->getFormExcuteGrade() < executor.getGrade())
     {
         throw NotPermited();
     }
+    return true;
 }

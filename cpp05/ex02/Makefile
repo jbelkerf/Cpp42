@@ -35,6 +35,7 @@ clean:
 
 fclean: clean
 	@printf "$(RED)  Removing executable...$(RESET)\n"
+	rm *_shrubbery
 	@$(RM) $(NAME)
 	@printf "$(GREEN)  Executable file removed$(RESET)\n"
 
