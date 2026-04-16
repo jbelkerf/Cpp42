@@ -12,20 +12,20 @@ class Form{
     public:
         class GradeTooLowException : public std::exception
         {
-        public:
-            virtual const char *what() const throw()
-            {
-                return "error too low";
-            }
+            public:
+                virtual const char *what() const throw()
+                {
+                    return "error too low";
+                }
         };
 
         class GradeTooHighException : public std::exception
         {
-        public:
-            virtual const char *what() const throw()
-            {
-                return "error to high";
-            }
+            public:
+                virtual const char *what() const throw()
+                {
+                    return "error too high";
+                }
         };
 
         Form();
