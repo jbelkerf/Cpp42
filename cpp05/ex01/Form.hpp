@@ -27,6 +27,14 @@ class Form{
                     return "error too high";
                 }
         };
+        class AlreadySignedException: public std::exception
+        {
+            public:
+                virtual const char *what() const throw()
+                {
+                    return "Already signed";
+                }
+        };
 
         Form();
         Form(std::string name, int signGrade, int excuteGrade);
