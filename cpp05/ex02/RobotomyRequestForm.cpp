@@ -11,6 +11,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other): AFor
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other){
+    AForm::operator=(other);
     this->_target = other._target;
     return *this;
 }

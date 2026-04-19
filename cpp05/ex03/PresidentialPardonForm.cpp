@@ -13,6 +13,7 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &oth
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &other){
+    AForm::operator=(other);
     _target = other._target;
     return *this;
 }

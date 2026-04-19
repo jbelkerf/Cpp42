@@ -13,6 +13,7 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &oth
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &other){
+    AForm::operator=(other);
     _target = other._target;
     return *this;
 }
@@ -23,5 +24,5 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 }
 
 PresidentialPardonForm::~PresidentialPardonForm(){
-    std::cout << "the PresidentialPardonForm has been eliminated";
+    std::cout << "the PresidentialPardonForm has been eliminated" << std::endl;
 }
