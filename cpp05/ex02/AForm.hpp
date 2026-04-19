@@ -13,44 +13,38 @@ class AForm{
         class GradeTooLowException : public std::exception
         {
             public:
-                virtual const char *what() const throw()
-                {
-                    return "error too low";
-                }
+                virtual const char *what() const throw();
         };
 
         class GradeTooHighException : public std::exception
         {
             public:
-                virtual const char *what() const throw()
-                {
-                    return "error too high";
-                }
+                virtual const char *what() const throw();
         };
 
         class NotPermited : public std::exception
         {
             public:
-                virtual const char *what() const throw()
-                {
-                    return "error Not permited";
-                }
+                virtual const char *what() const throw();
         };
 
         class NotSigned : public std::exception
         {
             public:
-                virtual const char *what() const throw()
-                {
-                    return "error Not signed";
-                }
+                virtual const char *what() const throw();
         };
+        class AlreadySignedException: public std::exception
+        {
+            public:
+                virtual const char *what() const throw();
+        };
+
 
         AForm();
         AForm(std::string name, int signGrade, int excuteGrade);
         AForm(const AForm &other);
         AForm &operator=(const AForm &other);
-        ~AForm();
+        virtual ~AForm();
 
         std::string getFormName() const;
         int getFormSignGrade() const;

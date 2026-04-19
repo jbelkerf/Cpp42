@@ -1,6 +1,15 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
+const char * Bureaucrat::GradeTooHighException::what() const throw() {
+    return "error too high";
+}
+
+const char * Bureaucrat::GradeTooLowException::what() const throw() {
+    return "error too low";
+}
+
+
 Bureaucrat::Bureaucrat(std::string name, int grade): tname(name)
 {
     std::cout << "creating bureaucrat" << std::endl;
@@ -17,7 +26,7 @@ Bureaucrat::Bureaucrat() : tname("Default"), tgrade(150) {
 }
 
 Bureaucrat::~Bureaucrat(){
-    std::cout << "deleting the bereaucrat" << std::endl;
+    std::cout << "deleting the bureaucrat" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other){
@@ -79,7 +88,8 @@ void Bureaucrat::executeForm(const AForm &form) const{
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << this->getName() << " couldn't execute " 
+          << form.getFormName() << " because " << e.what() << std::endl;
     }
     
 }

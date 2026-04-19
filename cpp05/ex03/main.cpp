@@ -8,6 +8,7 @@
 
 int main()
 {
+    std::srand((unsigned)time(NULL));
     std::cout << "\n-------------------------------------------------------" << std::endl;
     std::cout << "               TESTING THE INTERN" << std::endl;
     std::cout << "-------------------------------------------------------\n"

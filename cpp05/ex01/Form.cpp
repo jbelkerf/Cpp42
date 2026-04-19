@@ -1,5 +1,18 @@
 #include "Form.hpp"
 
+
+const char * Form::GradeTooHighException::what() const throw() {
+    return "error too high";
+}
+
+const char * Form::GradeTooLowException::what() const throw() {
+    return "error too low";
+}
+
+const char * Form::AlreadySignedException::what() const throw() {
+    return "form already signed";
+}
+
 Form::Form() : _name("Default"), _issigned(false), _signGrade(150), _excuteGrade(150)
 {
     std::cout << "Default Form created" << std::endl;

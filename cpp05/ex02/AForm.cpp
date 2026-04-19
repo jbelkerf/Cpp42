@@ -1,5 +1,25 @@
 #include "AForm.hpp"
 
+const char * AForm::GradeTooHighException::what() const throw() {
+    return "error too high";
+}
+
+const char * AForm::GradeTooLowException::what() const throw() {
+    return "error too low";
+}
+
+const char * AForm::AlreadySignedException::what() const throw() {
+    return "form already signed";
+}
+
+const char * AForm::NotPermited::what() const throw() {
+    return "executor grade is too low to execute the form";
+}
+
+const char * AForm::NotSigned::what() const throw() {
+    return "form is not signed yet";
+}
+
 AForm::AForm() : _name("Default"), _issigned(false), _signGrade(150), _excuteGrade(150)
 {
     std::cout << "Default AForm created" << std::endl;
@@ -52,13 +72,11 @@ std::ostream &operator<<(std::ostream &os, const AForm &form){
 }
 
 void AForm::beSigned(const Bureaucrat &bureaucrat){
-    if (bureaucrat.getGrade() > this->getFormSignGrade()){
+    if (this->_issigned == true)        // ← missing!
+        throw AlreadySignedException();
+    if (bureaucrat.getGrade() > this->getFormSignGrade())
         throw GradeTooLowException();
-    }
-    else
-    {
-        this->_issigned = true;
-    }
+    this->_issigned = true;
 }
 
 bool AForm::isReadyForExecute(const Bureaucrat &executor) const{

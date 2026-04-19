@@ -24,6 +24,8 @@ int main() {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
+    std::cout << "---------------------" << std::endl;
+
 
     try {
         std::cout << "\nTesting modifiers and operator overload..." << std::endl;
@@ -39,6 +41,10 @@ int main() {
     catch (std::exception &e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
+
+    std::cout << "---------------------" << std::endl;
+
+
     try
     {
         Bureaucrat boss("Hermes", 1);

@@ -7,6 +7,7 @@
 
 int main()
 {
+    std::srand((unsigned)time(NULL));
     std::cout << "\n-------------------------------------------------------" << std::endl;
     std::cout << "               CREATING BUREAUCRATS" << std::endl;
     std::cout << "-------------------------------------------------------\n"

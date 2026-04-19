@@ -23,12 +23,13 @@ int main() {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
+    std::cout << "---------------------" << std::endl;
 
     try {
         std::cout << "\nTesting modifiers and operator overload..." << std::endl;
         Bureaucrat boss("Hermes", 2);
         
-        std::cout << boss << std::endl; // Tests your << overload
+        std::cout << boss << std::endl; 
         
         boss.incrementGrade();
         std::cout << "After promotion: " << boss << std::endl;
