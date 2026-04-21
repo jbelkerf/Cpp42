@@ -1,4 +1,4 @@
-NAME = Serializer
+NAME = dynamic
 RED     := \033[0;31m
 GREEN   := \033[0;32m
 YELLOW  := \033[0;33m
@@ -10,9 +10,9 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-SRC = Serializer.cpp main.cpp
+SRC = A.cpp      B.cpp           Base.cpp        C.cpp           Functions.cpp   main.cpp
 
-INC := Serializer.cpp
+INC := A.hpp           B.hpp           Base.hpp        C.hpp
 
 OBJ := $(SRC:.cpp=.o)
 

@@ -12,7 +12,7 @@ RM := rm -rf
 
 SRC = Serializer.cpp main.cpp
 
-INC := Serializer.cpp
+INC := Serializer.hpp
 
 OBJ := $(SRC:.cpp=.o)
 

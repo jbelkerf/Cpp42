@@ -8,7 +8,14 @@ void ScalarConverter::convert(std::string rep){
     bool    no_int = false;
     bool    no_char = false;
 
-    if (rep.find('.') != std::string::npos && rep.find('f') != std::string::npos)
+    if  (rep.length() == 1 && !std::isdigit(rep[0]))
+    {
+        c = rep[0];
+        n = static_cast<int>(c);
+        f = static_cast<float>(c);
+        d = static_cast<double>(c);
+    }
+    else if (rep.find('.') != std::string::npos && rep.find('f') != std::string::npos)
     {
         f = std::strtof(rep.c_str(), NULL);
         d = static_cast<double>(f);
