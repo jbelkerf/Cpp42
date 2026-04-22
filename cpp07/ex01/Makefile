@@ -1,4 +1,4 @@
-NAME = Array
+NAME = iter
 RED     := \033[0;31m
 GREEN   := \033[0;32m
 YELLOW  := \033[0;33m
@@ -12,7 +12,7 @@ RM := rm -rf
 
 SRC = main.cpp
 
-INC := Array.hpp
+INC := iter.hpp
 
 OBJ := $(SRC:.cpp=.o)
 
