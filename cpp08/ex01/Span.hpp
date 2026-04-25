@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <numeric>
 #include <stdexcept>
 
 class Span{
@@ -18,9 +19,17 @@ class Span{
         Span(const Span &other);
         Span &operator=(const Span &other);
         ~Span();
-
+        template <typename Iterator>
+        void addRange(Iterator begin, Iterator end)
+        {
+            if ((unsigned int)std::distance(begin, end) + current > max)
+                throw std::runtime_error("Not enough space");
+            V.insert(V.end(), begin, end);
+            current += std::distance(begin, end);
+        }
         void addNumber(int number);
-
+        int shortestSpan() const;
+        int longestSpan() const;
 };
 
 #endif
