@@ -4,20 +4,16 @@ Span::Span(unsigned int N){
     max = N;
     current = 0;
 }
+
+
 Span::Span(const Span &other){
     *this = other;
 }
 
 Span &Span::operator=(const Span &other){
-    std::vector<int>::const_iterator it = other.V.begin();
-
     current = other.current;
     max = other.max;
-    while (it != other.V.end())
-    {
-        this->addNumber(*it);
-        it++;
-    }
+    V = other.V;
     return *this;
 }
 

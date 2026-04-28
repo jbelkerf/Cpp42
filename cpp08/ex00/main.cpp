@@ -49,6 +49,15 @@ int main() {
     } catch (std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
+    
+    // Test const overload
+    const std::vector<int> constVec(vec);
+    try {
+        std::vector<int>::const_iterator it = easyfind(constVec, 2);
+        std::cout << "const found: " << *it << std::endl;
+    } catch (std::exception &e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
 
     return 0;
 }
