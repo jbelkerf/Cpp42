@@ -6,9 +6,8 @@ Span::Span(unsigned int N){
 }
 
 
-Span::Span(const Span &other){
-    *this = other;
-}
+Span::Span(const Span &other) : max(other.max), current(other.current), V(other.V) {}
+
 
 Span &Span::operator=(const Span &other){
     current = other.current;

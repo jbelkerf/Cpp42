@@ -22,10 +22,11 @@ class Span{
         template <typename Iterator>
         void addRange(Iterator begin, Iterator end)
         {
-            if ((unsigned int)std::distance(begin, end) + current > max)
+            ptrdiff_t dist = std::distance(begin, end);
+            if (dist < 0 || (unsigned int)dist + current > max)
                 throw std::runtime_error("Not enough space");
             V.insert(V.end(), begin, end);
-            current += std::distance(begin, end);
+            current += dist;
         }
         void addNumber(int number);
         int shortestSpan() const;
