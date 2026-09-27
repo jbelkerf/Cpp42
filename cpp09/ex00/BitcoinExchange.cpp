@@ -15,7 +15,8 @@ BitcoinExchange::BitcoinExchange(std::string file){
         if (pos == std::string::npos)
              err = "Error: bad input => " + line;
         date = line.substr(0, pos);
-        if (err != "" && )
+        if (err != "" && (line.size()-pos)>9)
+            err = "Error: too large a number.";
         if (err != "")
         {
             std::istringstream ff(line.substr(pos, line.size()));

@@ -16,3 +16,5 @@ class BitcoinExchange{
         
 };
 #endif
+
+//2147483647
