@@ -13,6 +13,7 @@ class BitcoinExchange{
         BitcoinExchange(std::string file);
         void read_db();
         float get_loweer_date(std::string date);
+        std::string trimm(std::string d);
         
 };
 #endif
