@@ -1,4 +1,4 @@
-NAME = RPN
+NAME = PmergeMe
 RED     := \033[0;31m
 GREEN   := \033[0;32m
 YELLOW  := \033[0;33m
@@ -10,9 +10,9 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-SRC = RPN.cpp     main.cpp
+SRC = PmergeMe.cpp     main.cpp
 
-INC := RPN.hpp
+INC := PmergeMe.hpp
 
 OBJ := $(SRC:.cpp=.o)
 
