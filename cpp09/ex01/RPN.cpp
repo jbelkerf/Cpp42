@@ -42,6 +42,11 @@ RPN::RPN(std::string s){
             st.pop();
             int val2 = st.top();
             st.pop();
+            if (val1 == 0)
+            {
+                std::cerr << "Error" << std::endl;
+                return;
+            }
             val = val2 / val1;
             st.push(val);
 

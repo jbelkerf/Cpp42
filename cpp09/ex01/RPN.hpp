@@ -9,6 +9,7 @@ class RPN{
         std::stack<int > st;
     public:
         RPN(std::string s);
+        // int get_elment();
 };
 
 #endif
