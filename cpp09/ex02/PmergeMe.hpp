@@ -1,7 +1,7 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 #include <iostream>
-#include <list>
+#include <vector>
 #include <utility>
 #include <stdlib.h>
 #include <unistd.h>
@@ -9,16 +9,15 @@
 
 class PmergeMe{
     private:
-        std::list<int> numbers;
-        std::list<std::pair<int, int> > pairs;
+        std::vector<int> numbers;
+        std::vector<std::pair<int,int> > pairs;
         int count;
-        int reach;
     public:
         PmergeMe(int count, char **numbers);
-        void print_list(std::list<int>) ;
-        std::list<std::pair<int,int> > create_pairs(std::list<int>);
-        std::list<int> sort(std::list<int>);
-        std::list<int> fill_big(std::list<std::pair<int,int> > );
+        void print_list(std::vector<int> v) ;
+        std::vector<std::pair<int,int> > create_pairs(std::vector<int> v, bool &hasLeftover, int &leftoverValue);
+        std::vector<int> sort(std::vector<int> values);
+        void insertSorted(std::vector<int> &mainChain, int value, int low, int high);
 };
 
 #endif
