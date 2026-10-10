@@ -97,12 +97,98 @@ std::vector<int> PmergeMe::sortVec(std::vector<int> values)
     return mainChain;
 }
 
-void PmergeMe::print_list(std::vector<int> v){
-    std::vector<int>::iterator it = v.begin();
-    while (it != v.end())
+template <typename T>
+void PmergeMe::print(T t){
+    typename T::iterator it = t.begin();
+    while (it != t.end())
     {
-        std::cout << *it << ", ";
+        std::cout << *it<< " ," ;
         it++;
     }
     std::cout << std::endl;
+}
+
+PmergeMe::PmergeMe(std::deque<int> _numbers) : numbersDq(_numbers)
+{
+    numbersDq = sortDq(numbersDq);
+    std::cout << "After:  ";
+    for (size_t k = 0; k < numbersDq.size(); k++)
+        std::cout << numbersDq[k] << " ";
+    std::cout << std::endl;
+}
+
+void PmergeMe::insertSortedDq(std::deque<int> &mainChain, int value, int low, int high)
+{
+    while (low < high)
+    {
+        int mid = low + (high - low) / 2;
+        if (mainChain[mid] < value)
+            low = mid + 1;
+        else
+            high = mid;
+    }
+    mainChain.insert(mainChain.begin() + low, value);
+}
+
+std::deque<std::pair<int,int> > PmergeMe::create_pairsDq(std::deque<int> v, bool &hasLeftover, int &leftoverValue)
+{
+    std::deque<std::pair<int,int> > p;
+    size_t i = 0;
+    hasLeftover = false;
+
+    while (i + 1 < v.size())
+    {
+        int val1 = v[i];
+        int val2 = v[i + 1];
+        if (val1 > val2)
+            p.push_back(std::pair<int,int>(val1, val2));
+        else
+            p.push_back(std::pair<int,int>(val2, val1));
+        i += 2;
+    }
+    if (i < v.size()) // odd leftover
+    {
+        hasLeftover = true;
+        leftoverValue = v[i];
+    }
+    return p;
+}
+
+std::deque<int> PmergeMe::sortDq(std::deque<int> values)
+{
+    if (values.size() <= 1)
+        return values;
+
+    bool hasLeftover = false;
+    int leftoverValue = 0;
+    std::deque<std::pair<int,int> > pairs = create_pairsDq(values, hasLeftover, leftoverValue);
+
+    std::deque<int> largerValues;
+    for (size_t i = 0; i < pairs.size(); i++)
+        largerValues.push_back(pairs[i].first);
+
+    std::deque<int> mainChain = sortDq(largerValues);
+
+    std::deque<bool> used(pairs.size(), false);
+    std::deque<int> orderedPend;
+    for (size_t i = 0; i < mainChain.size(); i++)
+    {
+        for (size_t j = 0; j < pairs.size(); j++)
+        {
+            if (!used[j] && pairs[j].first == mainChain[i])
+            {
+                orderedPend.push_back(pairs[j].second);
+                used[j] = true;
+                break;
+            }
+        }
+    }
+
+    for (size_t i = 0; i < orderedPend.size(); i++)
+        insertSortedDq(mainChain, orderedPend[i], 0, mainChain.size());
+
+    if (hasLeftover)
+        insertSortedDq(mainChain, leftoverValue, 0, mainChain.size());
+
+    return mainChain;
 }
