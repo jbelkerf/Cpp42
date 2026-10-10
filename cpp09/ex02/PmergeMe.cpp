@@ -1,18 +1,18 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(int _count, char **nums){
-    for (int i = 1; i < _count; i++)
-    {
-        int number = atoi(nums[i]);
-        numbers.push_back(number);
+PmergeMe::PmergeMe(std::vector<int> _numbers):numbers(_numbers){
+    
+    numbers = sortVec(numbers);
+    std::cout << "After:  ";
+    for (size_t k = 0; k < numbers.size();k++){
+        std::cout << numbers[k] << " ";
     }
-    count = _count;
-    numbers = sort(numbers);
-    print_list(numbers);
+    std::cout << std::endl;
+    
 }
 
 // --- helper: binary search insert, bounded or full-range ---
-void PmergeMe::insertSorted(std::vector<int> &mainChain, int value, int low, int high)
+void PmergeMe::insertSortedVec(std::vector<int> &mainChain, int value, int low, int high)
 {
     while (low < high)
     {
@@ -26,7 +26,7 @@ void PmergeMe::insertSorted(std::vector<int> &mainChain, int value, int low, int
 }
 
 // --- create_pairs: now also tracks original pairing (larger -> smaller) ---
-std::vector<std::pair<int,int> > PmergeMe::create_pairs(std::vector<int> v, bool &hasLeftover, int &leftoverValue)
+std::vector<std::pair<int,int> > PmergeMe::create_pairsVec(std::vector<int> v, bool &hasLeftover, int &leftoverValue)
 {
     std::vector<std::pair<int,int> > p;
     size_t i = 0;
@@ -51,14 +51,14 @@ std::vector<std::pair<int,int> > PmergeMe::create_pairs(std::vector<int> v, bool
 }
 
 // --- sort: flat in, flat out ---
-std::vector<int> PmergeMe::sort(std::vector<int> values)
+std::vector<int> PmergeMe::sortVec(std::vector<int> values)
 {
     if (values.size() <= 1)
         return values;
 
     bool hasLeftover = false;
     int leftoverValue = 0;
-    std::vector<std::pair<int,int> > pairs = create_pairs(values, hasLeftover, leftoverValue);
+    std::vector<std::pair<int,int> > pairs = create_pairsVec(values, hasLeftover, leftoverValue);
 
     // extract larger values to recurse on
     std::vector<int> largerValues;
@@ -66,7 +66,7 @@ std::vector<int> PmergeMe::sort(std::vector<int> values)
         largerValues.push_back(pairs[i].first);
 
     // recurse
-    std::vector<int> mainChain = sort(largerValues);
+    std::vector<int> mainChain = sortVec(largerValues);
 
     // reconnect: for each value now in mainChain, find which pair it came
     // from (by matching .first), to retrieve its .second partner, in order
@@ -88,11 +88,11 @@ std::vector<int> PmergeMe::sort(std::vector<int> values)
     // insert each pend value into mainChain (simple left-to-right order,
     // full-range search for now — Jacobsthal ordering comes later)
     for (size_t i = 0; i < orderedPend.size(); i++)
-        insertSorted(mainChain, orderedPend[i], 0, mainChain.size());
+        insertSortedVec(mainChain, orderedPend[i], 0, mainChain.size());
 
     // insert leftover, if any, full-range
     if (hasLeftover)
-        insertSorted(mainChain, leftoverValue, 0, mainChain.size());
+        insertSortedVec(mainChain, leftoverValue, 0, mainChain.size());
 
     return mainChain;
 }

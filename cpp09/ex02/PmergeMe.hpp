@@ -11,13 +11,12 @@ class PmergeMe{
     private:
         std::vector<int> numbers;
         std::vector<std::pair<int,int> > pairs;
-        int count;
     public:
-        PmergeMe(int count, char **numbers);
+        PmergeMe(std::vector<int> numbers);
         void print_list(std::vector<int> v) ;
-        std::vector<std::pair<int,int> > create_pairs(std::vector<int> v, bool &hasLeftover, int &leftoverValue);
-        std::vector<int> sort(std::vector<int> values);
-        void insertSorted(std::vector<int> &mainChain, int value, int low, int high);
+        std::vector<std::pair<int,int> > create_pairsVec(std::vector<int> v, bool &hasLeftover, int &leftoverValue);
+        std::vector<int> sortVec(std::vector<int> values);
+        void insertSortedVec(std::vector<int> &mainChain, int value, int low, int high);
 };
 
 #endif
