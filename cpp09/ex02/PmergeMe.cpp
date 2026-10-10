@@ -11,26 +11,32 @@ PmergeMe::PmergeMe(std::vector<int> _numbers):numbers(_numbers){
     
 }
 
-// --- helper: binary search insert, bounded or full-range ---
-void PmergeMe::insertSortedVec(std::vector<int> &mainChain, int value, int low, int high)
+int PmergeMe::string_to_int(const std::string &str)
 {
-    while (low < high)
+    std::stringstream ss(str);
+    int value;
+    char leftover;
+
+    if (!(ss >> value) || (ss >> leftover) || value < 0)
     {
-        int mid = low + (high - low) / 2;
-        if (mainChain[mid] < value)
-            low = mid + 1;
-        else
-            high = mid;
+        std::cerr << "Error: invalid input" << std::endl;
+        exit(1);
     }
-    mainChain.insert(mainChain.begin() + low, value);
+    return value;
 }
 
-// --- create_pairs: now also tracks original pairing (larger -> smaller) ---
-std::vector<std::pair<int,int> > PmergeMe::create_pairsVec(std::vector<int> v, bool &hasLeftover, int &leftoverValue)
+void PmergeMe::insertSortedVec(std::vector<int> &mainChain, int value, int low, int high)
+{
+    std::vector<int>::iterator first = mainChain.begin() + low;
+    std::vector<int>::iterator last = mainChain.begin() + high;
+    std::vector<int>::iterator pos = std::lower_bound(first, last, value);
+    mainChain.insert(pos, value);
+}
+std::vector<std::pair<int,int> > PmergeMe::create_pairsVec(std::vector<int> v, int &odd)
 {
     std::vector<std::pair<int,int> > p;
     size_t i = 0;
-    hasLeftover = false;
+    odd = -1;
 
     while (i + 1 < v.size())
     {
@@ -42,71 +48,94 @@ std::vector<std::pair<int,int> > PmergeMe::create_pairsVec(std::vector<int> v, b
             p.push_back(std::pair<int,int>(val2, val1));
         i += 2;
     }
-    if (i < v.size()) // odd leftover
-    {
-        hasLeftover = true;
-        leftoverValue = v[i];
-    }
+    if (i < v.size())
+        odd = v[i];
     return p;
 }
 
-// --- sort: flat in, flat out ---
 std::vector<int> PmergeMe::sortVec(std::vector<int> values)
 {
     if (values.size() <= 1)
         return values;
 
-    bool hasLeftover = false;
-    int leftoverValue = 0;
-    std::vector<std::pair<int,int> > pairs = create_pairsVec(values, hasLeftover, leftoverValue);
+    int odd = -1;
+    std::vector<std::pair<int,int> > pairs = create_pairsVec(values, odd);
 
-    // extract larger values to recurse on
     std::vector<int> largerValues;
     for (size_t i = 0; i < pairs.size(); i++)
         largerValues.push_back(pairs[i].first);
 
-    // recurse
     std::vector<int> mainChain = sortVec(largerValues);
 
-    // reconnect: for each value now in mainChain, find which pair it came
-    // from (by matching .first), to retrieve its .second partner, in order
-    std::vector<bool> used(pairs.size(), false);
-    std::vector<int> orderedPend;
+    // reconnect (erase-based) — after this, pairs[k] corresponds to mainChain[k]
+    std::vector<std::pair<int,int> > sorted;
     for (size_t i = 0; i < mainChain.size(); i++)
     {
-        for (size_t j = 0; j < pairs.size(); j++)
+        for (std::vector<std::pair<int,int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
         {
-            if (!used[j] && pairs[j].first == mainChain[i])
+            if (it->first == mainChain[i])
             {
-                orderedPend.push_back(pairs[j].second);
-                used[j] = true;
+                sorted.push_back(*it);
+                pairs.erase(it);
                 break;
             }
         }
     }
+    pairs = sorted;
 
-    // insert each pend value into mainChain (simple left-to-right order,
-    // full-range search for now — Jacobsthal ordering comes later)
-    for (size_t i = 0; i < orderedPend.size(); i++)
-        insertSortedVec(mainChain, orderedPend[i], 0, mainChain.size());
+    size_t size = pairs.size();
+    size_t cnt = size;
+    if (odd != -1)
+        cnt++;
 
-    // insert leftover, if any, full-range
-    if (hasLeftover)
-        insertSortedVec(mainChain, leftoverValue, 0, mainChain.size());
+    // Step 0: pend[0] is paired with the smallest main element — insert directly, no search
+    if (size > 0)
+        mainChain.insert(mainChain.begin(), pairs[0].second);
+
+    // Jacobsthal-driven insertion of the rest
+    size_t prev = 1;
+    size_t curr = 3;
+    while (prev < cnt)
+    {
+        size_t end = curr;
+        if (end > cnt)
+            end = cnt;
+        for (size_t i = end; i > prev; i--)
+        {
+            int value;
+            int partner = -1; // -1 = no partner, search full range (the odd/extra element)
+
+            if (i <= size)
+            {
+                value = pairs[i - 1].second;
+                partner = pairs[i - 1].first;
+            }
+            else
+                value = odd;
+
+            // find partner's CURRENT position in mainChain to bound the search
+            size_t idx = mainChain.size();
+            if (partner != -1)
+            {
+                for (size_t k = 0; k < mainChain.size(); k++)
+                {
+                    if (mainChain[k] == partner)
+                    {
+                        idx = k;
+                        break;
+                    }
+                }
+            }
+            insertSortedVec(mainChain, value, 0, idx);
+        }
+        size_t next = curr + 2 * prev;
+        prev = curr;
+        curr = next;
+    }
 
     return mainChain;
 }
 
-template <typename T>
-void PmergeMe::print(T t){
-    typename T::iterator it = t.begin();
-    while (it != t.end())
-    {
-        std::cout << *it<< " ," ;
-        it++;
-    }
-    std::cout << std::endl;
-}
 
 PmergeMe::PmergeMe(std::deque<int> _numbers) : numbersDq(_numbers)
 {

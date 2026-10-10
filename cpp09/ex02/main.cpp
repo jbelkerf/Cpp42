@@ -6,7 +6,7 @@ int main(int argc, char ** argv){
     std::deque<int> numbersDq;
     for (int i = 1; i < argc; i++)
     {
-        int number = atoi(argv[i]);
+        int number = PmergeMe::string_to_int(argv[i]);
         numbers.push_back(number);
         numbersDq.push_back(number);
     }

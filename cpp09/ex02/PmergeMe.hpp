@@ -4,6 +4,16 @@
 #include <vector>
 #include <deque>
 #include <utility>
+#include <cstddef>
+#include <iostream>
+#include <algorithm>
+#include <cstddef>
+#include <deque>
+#include <iterator>
+#include <utility>
+#include <sys/time.h>
+#include <iomanip>
+#include <sstream>
 
 class PmergeMe{
     private:
@@ -11,14 +21,14 @@ class PmergeMe{
         std::vector<std::pair<int,int> > pairs;
         std::deque<int> numbersDq;
     public:
+    static int string_to_int(const std::string &str);
         PmergeMe(std::vector<int> numbers);
         PmergeMe(std::deque<int> numbers);
 
-        template <typename T>
-        void print(T t);
+        
 
         // vector version
-        std::vector<std::pair<int,int> > create_pairsVec(std::vector<int> v, bool &hasLeftover, int &leftoverValue);
+        std::vector<std::pair<int,int> > create_pairsVec(std::vector<int> v, int &odd);
         std::vector<int> sortVec(std::vector<int> values);
         void insertSortedVec(std::vector<int> &mainChain, int value, int low, int high);
 
