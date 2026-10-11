@@ -1,15 +1,26 @@
-#ifndef RPN_H
-#define RPN_H
+#ifndef RPN_HPP
+#define RPN_HPP
+
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <stack>
+#include <list>
+#include <climits>
 
-class RPN{
+class RPN
+{
     private:
-        std::stack<int > st;
+        std::stack<long, std::list<long> > st;
+        static bool apply(char op, long a, long b, long &res);
+
     public:
-        RPN(std::string s);
-        // int get_elment();
+        RPN();
+        RPN(const RPN &other);
+        RPN &operator=(const RPN &other);
+        ~RPN();
+
+        bool evaluate(const std::string &expr, long &result);
 };
 
 #endif

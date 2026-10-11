@@ -1,63 +1,91 @@
 #include "RPN.hpp"
-#include <stack>
 
-RPN::RPN(std::string s){
-    int val = 0;
-    int val1,val2;
-    for (int i = 0; s[i] != 0;i++){
-        if (s[i] >= '0' && s[i] <= '9')
-            st.push(s[i] - '0');
-        else if (s[i] == '+' && st.size())
-        {
-            val1 = st.top();
-            st.pop();
-            val2 = st.top();
-            st.pop();
-            val = val2 + val1;
-            st.push(val);
-        }
-        else if (s[i] == '*' )
-        {
-            int val1 = st.top();
-            st.pop();
-            int val2 = st.top();
-            st.pop();
-            val = val2 * val1;
-            st.push(val);
+RPN::RPN() {}
 
-        }
-        else if (s[i] == '-' )
-        {
-            int val1 = st.top();
-            st.pop();
-            int val2 = st.top();
-            st.pop();
-            val = val2 - val1;
-            st.push(val);
+RPN::RPN(const RPN &o) : st(o.st) {}
 
-        }
-        else if (s[i] == '/' )
-        {
-            int val1 = st.top();
-            st.pop();
-            int val2 = st.top();
-            st.pop();
-            if (val1 == 0)
-            {
-                std::cerr << "Error" << std::endl;
-                return;
-            }
-            val = val2 / val1;
-            st.push(val);
+RPN &RPN::operator=(const RPN &o)
+{
+    if (this != &o)
+        st = o.st;
+    return *this;
+}
 
-        }
-        else if (s[i] != ' ' && s[i] != '\0')
-        {
-            //? print to stderr
-            std::cout << "Error" << std::endl;
-            return;
-        }
+RPN::~RPN() {}
 
+bool RPN::apply(char op, long a, long b, long &res)
+{
+    if (op == '+')
+    {
+        if ((b > 0 && a > LONG_MAX - b) || (b < 0 && a < LONG_MIN - b))
+            return false;
+        res = a + b;
+        return true;
     }
-    std::cout << val << std::endl;
+    if (op == '-')
+    {
+        if ((b < 0 && a > LONG_MAX + b) || (b > 0 && a < LONG_MIN + b))
+            return false;
+        res = a - b;
+        return true;
+    }
+    if (op == '*')
+    {
+        if (a != 0 && b != 0)
+        {
+            if (a > 0 && b > 0 && a > LONG_MAX / b)
+                return false;
+            if (a > 0 && b < 0 && b < LONG_MIN / a)
+                return false;
+            if (a < 0 && b > 0 && a < LONG_MIN / b)
+                return false;
+            if (a < 0 && b < 0 && a < LONG_MAX / b)
+                return false;
+        }
+        res = a * b;
+        return true;
+    }
+    if (op == '/')
+    {
+        if (b == 0 || (a == LONG_MIN && b == -1))
+            return false;
+        res = a / b;
+        return true;
+    }
+    return false;
+}
+
+bool RPN::evaluate(const std::string &expr, long &result)
+{
+    st = std::stack<long, std::list<long> >(); // reset
+
+    std::istringstream ss(expr);
+    std::string token;
+    while (ss >> token)
+    {
+        if (token.size() != 1)
+            return false;
+        char c = token[0];
+        if (c >= '0' && c <= '9')
+            st.push(c - '0');
+        else if (c == '+' || c == '-' || c == '*' || c == '/')
+        {
+            if (st.size() < 2)
+                return false;
+            long b = st.top();
+            st.pop();
+            long a = st.top();
+            st.pop();
+            long res;
+            if (!apply(c, a, b, res))
+                return false;
+            st.push(res);
+        }
+        else
+            return false;
+    }
+    if (st.size() != 1)
+        return false;
+    result = st.top();
+    return true;
 }
